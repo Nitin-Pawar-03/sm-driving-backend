@@ -48,16 +48,13 @@ admin_collection = db["admins"]
 # ============================================================
 #                 PASSWORD / AUTH UTILITIES
 # ============================================================
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-
-def verify_password(plain: str, hashed: str) -> bool:
-    return pwd_context.verify(plain, hashed)
-
+# ------------------ Password Utilities ------------------
+# Simple version: store plain password (for small internal project)
+def verify_password(plain: str, stored: str) -> bool:
+    return plain == stored
 
 def get_password_hash(password: str) -> str:
-    return pwd_context.hash(password)
+    return password
 
 
 # ============================================================
